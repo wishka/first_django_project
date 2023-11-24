@@ -15,7 +15,7 @@
             <p>Delivery address: {{ order.delivery_address }}</p>
             <div> Products in order:
                 <ul>
-                    <div>{% for product in orders.products.all %}</div>
+                    {% for product in order.products.all %}
                     <li>{{ product.name }} for ${{ product.price }} </li>
                     {% endfor %}
                 </ul>

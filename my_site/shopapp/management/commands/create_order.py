@@ -8,7 +8,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         self.stdout.write("Create order")
-        user = User.objects.get(username="admin")
+        user = User.objects.get(username="wishka")
         order = Order.objects.get_or_create(
             delivery_address="ul Pupkina d 123 kv 91",
             promocode="SALE123",
