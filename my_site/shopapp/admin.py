@@ -1,18 +1,36 @@
 from django.contrib import admin
+from django.db.models import QuerySet
+from django.http import HttpRequest
 
 from .models import Product, Order
+from .admin_mixins import ExportAsCSVMixin
 
 
 class OrderInline(admin.TabularInline):
     model = Product.orders.through # Покажет, с какими заказами связан продукт
-    
-    
+
+
+@admin.action(description="Mark archived")
+def mark_archived(modeladmin: admin.ModelAdmin, request: HttpRequest, queryset: QuerySet):
+    return queryset.update(archived=True)
+
+
+@admin.action(description="Unarchived")
+def mark_unarchived(modeladmin: admin.ModelAdmin, request: HttpRequest, queryset: QuerySet):
+    return queryset.update(archived=False)
+
+
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
+    actions = [
+        mark_archived,
+        mark_unarchived,
+        "export_as_csv"
+    ]
     inlines = [
         OrderInline,
     ]
-    list_display = ("pk", "name", "description_short", "price", "discount")
+    list_display = ("pk", "name", "description_short", "price", "discount", "archived")
     list_display_links = ("pk", "name")
     ordering = "pk", # Позволяет сортировать по первичному ключу. , в конце обязательна так как
     # сортировка требует кортеж. Если требуется сортировка по имени и цене то , не нужна
@@ -38,8 +56,11 @@ class ProductAdmin(admin.ModelAdmin):
     #     if len(obj.description) < 48:
     #         return obj.description
     #     return obj.description[:48] + "..."
+    
+    
 class ProductInline(admin.TabularInline): # можно использовать StackedInline. Меняет только вид в админке
     model = Order.products.through # Достает все продукты, связанные с заказом
+
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
