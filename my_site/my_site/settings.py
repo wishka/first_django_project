@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'requestdataapp.middlewares.set_useragent_on_request_middleware',
     'requestdataapp.middlewares.CountRequestMiddleware',
-    'requestdataapp.middleware.ThrottlingMiddleware',
+    # 'requestdataapp.middlewares.ThrottlingMiddleware',
 ]
 
 ROOT_URLCONF = 'my_site.urls'
@@ -74,7 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_site.wsgi.application'
 
-
+REQUEST_THROTTLE_TIME = 60  # Пример значения времени ограничения запросов (в секундах)
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

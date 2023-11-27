@@ -9,9 +9,12 @@
     <div>
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <p><input type="file" name="my_file"></p>
+            {{ form.as_p }}
             <button type="submit">Upload</button>
         </form>
     </div>
+{% if size %}
+    <p>Размер файла {{size}}байт</p>
+{% endif %}
 
 {% endblock %}

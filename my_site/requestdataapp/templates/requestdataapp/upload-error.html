@@ -6,4 +6,8 @@
 
 {% block body %}
     <h1>File is too big. Error load!</h1>
+{% if size %}
+    <p>Размер файла {{ size }} мб</p>
+    <p>Максимальный размер {{ max_file_size }} мб</p>
+{% endif %}
 {% endblock %}

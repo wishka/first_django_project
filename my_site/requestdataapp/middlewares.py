@@ -1,7 +1,6 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseForbidden
 import time
 from django.conf import settings
-from django.http import HttpResponseForbidden
 from django.core.cache import cache
 
 
@@ -44,12 +43,13 @@ class ThrottlingMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
-    def __call__(self, request):
-        ip_address = self.get_client_ip(request)
+    def __call__(self, request, *args, **kwargs):
+        http_request = self.create_http_request(request)
+        ip_address = self.get_client_ip(http_request)
         if self.is_request_throttled(ip_address):
             return HttpResponseForbidden("Too many requests. Please try again later.")
 
-        response = self.get_response(request)
+        response = self.get_response(http_request)
         return response
 
     def get_client_ip(self, request):
@@ -58,7 +58,13 @@ class ThrottlingMiddleware:
             ip = x_forwarded_for.split(',')[0]
         else:
             ip = request.META.get('REMOTE_ADDR')
-        return ip.strip()
+        return ip
+
+    def create_http_request(self, request_dict):
+        http_request = HttpRequest()
+        for key, value in request_dict.items():
+            setattr(http_request, key, value)
+        return http_request
 
     def is_request_throttled(self, ip_address):
         last_request_time = self.get_last_request_time(ip_address)
