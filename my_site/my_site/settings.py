@@ -74,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_site.wsgi.application'
 
-REQUEST_THROTTLE_TIME = 60  # Пример значения времени ограничения запросов (в секундах)
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

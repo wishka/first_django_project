@@ -1,8 +1,6 @@
 from django.http import HttpRequest
 import time
-from django.conf import settings
-from django.http import HttpResponseForbidden
-from django.core.cache import cache
+from django.shortcuts import render
 
 
 def set_useragent_on_request_middleware(get_response): # Принимает функцию get_response, которая используется, чтобы получить ответ(выполнить обработку запроса)
@@ -43,37 +41,23 @@ class CountRequestMiddleware:
 class ThrottlingMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
+        self.request_vists = {}
+        self.time_delay = 10
 
-    def __call__(self, request):
-        ip_address = self.get_client_ip(request)
-        if self.is_request_throttled(ip_address):
-            return HttpResponseForbidden("Too many requests. Please try again later.")
+    def __call__(self, request: HttpRequest):
+        request_ip = request.META.get('REMOTE_ADDR')
+        request_url = request.build_absolute_uri()
+        request_time = round(time.time())
 
+        if request_ip in self.request_vists and request_url == self.request_vists[request_ip][1]:
+            past_time = round(time.time()) - self.request_vists[request_ip][0]
+            if past_time < self.time_delay:
+                context = {
+                    'time_left': self.time_delay - past_time,
+                    'time': self.time_delay
+                }
+                return render(request, 'requestdataapp/trottling-error.html', context=context)
+
+        self.request_vists[request_ip] = [request_time, request_url]
         response = self.get_response(request)
         return response
-
-    def get_client_ip(self, request):
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-        return ip.strip()
-
-    def is_request_throttled(self, ip_address):
-        last_request_time = self.get_last_request_time(ip_address)
-        current_time = time.time()
-        elapsed_time = current_time - last_request_time
-
-        if elapsed_time < settings.REQUEST_THROTTLE_TIME:
-            return True
-
-        self.update_last_request_time(ip_address, current_time)
-        return False
-
-    def get_last_request_time(self, ip_address):
-        last_request_time = cache.get(ip_address)
-        return last_request_time or 0
-
-    def update_last_request_time(self, ip_address, current_time):
-        cache.set(ip_address, current_time, settings.REQUEST_THROTTLE_TIME)

@@ -1,0 +1,11 @@
+{% extends 'requestdataapp/base.html' %}
+
+{% block title %}
+    Trottling Error
+{% endblock %}
+
+{% block body %}
+    <h1>Trottling Error</h1>
+    <p>Last request time was {{ time_left }} seconds ago</p>
+    <p>You must wait for {{ time }} seconds between your requests</p>
+{% endblock %}
