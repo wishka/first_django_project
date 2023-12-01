@@ -7,11 +7,27 @@
             Base title
         {% endblock %}
     </title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        .header {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
 </head>
 <body>
-
+{% block header %}
+<div class="header">
+    <div><a href="{% url 'shopapp:orders_list' %}">Orders</a></div>
+    <div><a href="{% url 'shopapp:products_list' %}">Products</a></div>
+    <div><a href="{% url 'shopapp:groups_list' %}">Groups</a></div>
+</div>
+<hr>
+{% endblock %}
 {% block body %}
-    Base body
+
 {% endblock %}
 <div>
     {% now 'H:i' %}

@@ -10,7 +10,8 @@
         {% if products %}
     <div>{% for product in products %}</div>
         <div>
-            <p>Name: {{ product.name }}</p>
+            <p>Name: <a href="{% url 'shopapp:product_details' pk=product.pk %}"
+            > {{ product.name }}</a></p>
             <p>Price: {{ product.price }}</p>
             <p>Discount: {% firstof product.discount 'no discount' %}</p>
 

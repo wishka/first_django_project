@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-
     <h1> Orders </h1>
-        {% if orders %}
-    <div>{% for order in orders %}</div>
+        {% if object_list %}
+    <div>{% for order in object_list %}</div>
         <div>
+            <p><a href="{% url 'shopapp:order_details' pk=order.pk %}">Details of order {{ order.pk}}</a></p>
             <p>Ordered by: {% firstof order.user.first_name order.user.username %}</p>
             <p>Promocode: <code>{{ order.promocode }}</code></p>
             <p>Delivery address: {{ order.delivery_address }}</p>
