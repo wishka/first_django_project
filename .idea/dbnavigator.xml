@@ -23,9 +23,12 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" object-ref="schemas/main/tables/auth_permission" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_user_groups" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.django_migrations" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_group" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.shopapp_order_products" active-filter-id="" />
@@ -37,6 +40,7 @@
       </filter>
     </filter-actions>
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.django_session" active-filter-id="" />
+    <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_permission" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

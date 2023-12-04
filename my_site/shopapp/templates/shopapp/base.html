@@ -23,10 +23,15 @@
     <div><a href="{% url 'shopapp:orders_list' %}">Orders</a></div>
     <div><a href="{% url 'shopapp:products_list' %}">Products</a></div>
     <div><a href="{% url 'shopapp:groups_list' %}">Groups</a></div>
-    {% if user %}
-        <div>{{ user }} / <a href="{% url 'myauth:logout' %}">Logout</a></div>
+    {% if user.is_authenticated %}
+        <div><a href="{% url 'myauth:about-me' %}">My info /</a>
+            {{ user }} / <a href="{% url 'myauth:logout' %}">Logout</a>
+        </div>
     {% else %}
-        <div><a href="{% url 'myauth:login' %}">Login</a></div>
+        <div>
+            <a href="{% url 'myauth:login' %}">Login</a><<<>>>
+            <a href="{% url 'myauth:register' %}">Sign up</a>
+        </div>
     {% endif %}
 </div>
 <hr>

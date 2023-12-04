@@ -1,12 +1,13 @@
 from timeit import default_timer
 
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from .forms import ProductForm, OrderForm, GroupForm
 from .models import Product, Order
 
@@ -52,12 +53,21 @@ class ProductsListView(ListView): # С помощью TemplateView можно д
         return context
 
 
-class ProductCreateView(CreateView):
+@permission_required('shopapp.add_product', raise_exception=True)
+class ProductCreateView(UserPassesTestMixin, CreateView):
+    def test_func(self) -> bool:
+        # return self.request.user.groups.filter(name="secret-group").exists() # Пример проверки
+        return self.request.user.is_superuser # Пример проверки
     model = Product
     fields = "name", "price", "description", "discount" # Указываем поля, из которых состоит модель
     success_url = reverse_lazy("shopapp:products_list") # Ленивый метод создания ссылки, только когда идет обращение к этому объекту
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 
+# @permission_required('shopapp.change_product', raise_exception=True)
 class ProductUpdateView(UpdateView):
     model = Product
     fields = "name", "price", "description", "discount"
@@ -83,7 +93,7 @@ class ProductDeleteView(DeleteView):
         return HttpResponseRedirect(success_url)
     
     
-class OrdersListView(ListView):
+class OrdersListView(LoginRequiredMixin, ListView):
     queryset = (
         # Так как на заказе есть дополнительные связи, надо сделать queryset, вместо model
         Order.objects.
@@ -93,7 +103,8 @@ class OrdersListView(ListView):
     )
     
     
-class OrderDetailView(DetailView):
+class OrderDetailView(PermissionRequiredMixin, DetailView):
+    permission_required = ["shopapp.view_order",]
     queryset = (
         # Так как на заказе есть дополнительные связи, надо сделать queryset, вместо model
         Order.objects.

@@ -19,7 +19,7 @@ from django.contrib.auth.models import Group
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = 'name', 'price', 'description', 'discount' # Автоматическая генерация формы на основании данных в модели
+        fields = 'name', 'price', 'description', 'discount', 'created_by' # Автоматическая генерация формы на основании данных в модели
 
 
 class OrderForm(forms.ModelForm):
