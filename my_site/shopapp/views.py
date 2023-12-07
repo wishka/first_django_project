@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
@@ -53,8 +54,9 @@ class ProductsListView(ListView): # С помощью TemplateView можно д
         return context
 
 
-@permission_required('shopapp.add_product', raise_exception=True)
-class ProductCreateView(UserPassesTestMixin, CreateView):
+# @method_decorator(permission_required('shopapp.add_product', raise_exception=True), name='dispatch')
+class ProductCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'shopapp.add_product'
     def test_func(self) -> bool:
         # return self.request.user.groups.filter(name="secret-group").exists() # Пример проверки
         return self.request.user.is_superuser # Пример проверки
@@ -67,8 +69,10 @@ class ProductCreateView(UserPassesTestMixin, CreateView):
         return super().form_valid(form)
 
 
-# @permission_required('shopapp.change_product', raise_exception=True)
-class ProductUpdateView(UpdateView):
+# @method_decorator(permission_required('shopapp.change_product', raise_exception=True), name='dispatch')
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    product_owner = Product.created_by
+    permission_required = 'shopapp.change_product'
     model = Product
     fields = "name", "price", "description", "discount"
     template_name_suffix = "_update_form" # Необходимо сделать чтобы вместо Update не отображалось Create во View

@@ -14,7 +14,7 @@
         <div>Archived: <em>{{ product.archived }}</em></div>
     </div>
     <div>
-        {% if perms.change_product %}
+        {% if perms.shopapp.change_product %}
             <a href="{% url 'shopapp:product_update' pk=product.pk %}"> >>> Update product <<< </a>
         {% endif %}
     </div>
