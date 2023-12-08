@@ -39,6 +39,9 @@ class ProductDetailsView(DetailView):
    template_name = 'shopapp/product-details.html'
    model = Product
    context_object_name = 'product'
+   context = {
+       "created_by": "Jack-Jack"
+   }
 
 
 class ProductsListView(ListView): # С помощью TemplateView можно делать шаблоны избегаю повторного вызова render
@@ -71,7 +74,6 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
 
 # @method_decorator(permission_required('shopapp.change_product', raise_exception=True), name='dispatch')
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
-    product_owner = Product.created_by
     permission_required = 'shopapp.change_product'
     model = Product
     fields = "name", "price", "description", "discount"
