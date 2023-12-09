@@ -1,16 +1,16 @@
 from timeit import default_timer
-
-from django.contrib.auth.decorators import permission_required
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
-from .forms import ProductForm, OrderForm, GroupForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .forms import GroupForm
 from .models import Product, Order
+from .permissions import IsProductAuthor
 
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
@@ -39,9 +39,9 @@ class ProductDetailsView(DetailView):
    template_name = 'shopapp/product-details.html'
    model = Product
    context_object_name = 'product'
-   context = {
-       "created_by": "Jack-Jack"
-   }
+   # context = {
+   #     "created_by": Product.created_by
+   # }
 
 
 class ProductsListView(ListView): # С помощью TemplateView можно делать шаблоны избегаю повторного вызова render
@@ -57,7 +57,6 @@ class ProductsListView(ListView): # С помощью TemplateView можно д
         return context
 
 
-# @method_decorator(permission_required('shopapp.add_product', raise_exception=True), name='dispatch')
 class ProductCreateView(PermissionRequiredMixin, CreateView):
     permission_required = 'shopapp.add_product'
     def test_func(self) -> bool:
@@ -72,14 +71,26 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# @method_decorator(permission_required('shopapp.change_product', raise_exception=True), name='dispatch')
-class ProductUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'shopapp.change_product'
+class ProductUpdateView(UpdateView):
     model = Product
     fields = "name", "price", "description", "discount"
     template_name_suffix = "_update_form" # Необходимо сделать чтобы вместо Update не отображалось Create во View
     # Просто так не получится вернуть пользователя на страницу продуктов, поэтому надо сделать метод,
-    # в котором уже можно переопределить ссылку для возврата на страницу отображения продуктов,
+    # в котором уже можно переопределить ссылку для возврата на страницу отображения продуктов
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_author'] = self.object.author == self.request.user
+        
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if not obj.created_by == request.user:
+            return HttpResponseRedirect(reverse('shopapp:product_details', kwargs={'pk': obj.pk}))
+        return super().dispatch(request, *args, **kwargs)
+    # Если пользователь не является автором, он будет перенаправлен на
+    # страницу с деталями продукта. Если пользователь авторизован и является автором
+    # продукта, представление будет выполнено для редактирования продукта.
+    
     def get_success_url(self) -> str:
         return reverse(
             "shopapp:product_details",
