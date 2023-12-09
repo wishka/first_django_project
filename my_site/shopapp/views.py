@@ -39,9 +39,12 @@ class ProductDetailsView(DetailView):
    template_name = 'shopapp/product-details.html'
    model = Product
    context_object_name = 'product'
-   # context = {
-   #     "created_by": Product.created_by
-   # }
+   
+   def get_context_data(self, **kwargs):
+       context = super(ProductDetailsView, self).get_context_data()
+       context['owner'] = self.object.created_by
+       
+       return context
 
 
 class ProductsListView(ListView): # С помощью TemplateView можно делать шаблоны избегаю повторного вызова render
@@ -71,16 +74,13 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'shopapp.change_product'
     model = Product
     fields = "name", "price", "description", "discount"
     template_name_suffix = "_update_form" # Необходимо сделать чтобы вместо Update не отображалось Create во View
     # Просто так не получится вернуть пользователя на страницу продуктов, поэтому надо сделать метод,
     # в котором уже можно переопределить ссылку для возврата на страницу отображения продуктов
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_author'] = self.object.author == self.request.user
         
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
