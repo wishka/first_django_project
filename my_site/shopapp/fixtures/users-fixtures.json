@@ -1,0 +1,83 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$DnTzFZCeh9XETtmLmAePDv$JKG7lHWojwuNIgwojDeddU/crOrO0i9m+F3vPX8vvgo=",
+      "last_login": "2023-12-09T12:38:59.787Z",
+      "is_superuser": true,
+      "username": "wishka",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-11-21T02:02:31.621Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$R4s3lP545bYHJROaCTf5Au$oWAz3E7QPE+YVZJsd+r2sD71IT1vvcVwrqK28aeMGg8=",
+      "last_login": "2023-12-09T04:22:54.054Z",
+      "is_superuser": false,
+      "username": "Jack-Jack",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-03T04:05:21Z",
+      "groups": [
+        5
+      ],
+      "user_permissions": [
+        4,
+        32,
+        25,
+        26,
+        27,
+        28
+      ]
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$5rQCbuMBA881NOqOtOkcZ7$Od0wB73Uf99lctRNDeBIh0df9F9pTiIfyCHAGbBxBJc=",
+      "last_login": "2023-12-08T13:12:48.055Z",
+      "is_superuser": false,
+      "username": "alison",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-03T04:20:57.840Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$h176XTG855HcxIsmi1ZIUT$BJU8+osUkC4EWh+I9SA/KPdRMTdFTTl46bAsDus3K14=",
+      "last_login": "2023-12-03T04:36:40.535Z",
+      "is_superuser": false,
+      "username": "Nick",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-12-03T04:36:40.252Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

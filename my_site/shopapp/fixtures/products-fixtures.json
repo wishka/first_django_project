@@ -1,0 +1,93 @@
+[
+  {
+    "model": "shopapp.product",
+    "pk": 1,
+    "fields": {
+      "name": "Laptop",
+      "description": "Ut enim ad minima вениам quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "price": "1999.00",
+      "discount": 0,
+      "created_at": "2023-11-22T02:34:09.324Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 2,
+    "fields": {
+      "name": "Desktop (new)",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo Invente veritatis et quasi Architecto Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed qu я Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut Labore et dolore magnam aliquam quaerat voluptatem.",
+      "price": "2899.00",
+      "discount": 15,
+      "created_at": "2023-11-22T02:34:09.324Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 3,
+    "fields": {
+      "name": "Smartphone",
+      "description": "",
+      "price": "999.00",
+      "discount": 25,
+      "created_at": "2023-11-22T02:34:09.324Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 4,
+    "fields": {
+      "name": "Tablet",
+      "description": "scsdcsdc",
+      "price": "1234.00",
+      "discount": 0,
+      "created_at": "2023-11-27T00:38:40.067Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 6,
+    "fields": {
+      "name": "iPhone 25",
+      "description": "new iPhone",
+      "price": "2345.00",
+      "discount": 5,
+      "created_at": "2023-12-01T19:59:04.415Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 7,
+    "fields": {
+      "name": "Next iPad 4",
+      "description": "Not new",
+      "price": "2300.00",
+      "discount": 0,
+      "created_at": "2023-12-04T03:59:40.854Z",
+      "archived": false,
+      "created_by": 1
+    }
+  },
+  {
+    "model": "shopapp.product",
+    "pk": 8,
+    "fields": {
+      "name": "TV200",
+      "description": "TV from korea",
+      "price": "3400.00",
+      "discount": 5,
+      "created_at": "2023-12-07T13:58:51.020Z",
+      "archived": false,
+      "created_by": 2
+    }
+  }
+]

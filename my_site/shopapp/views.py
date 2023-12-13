@@ -2,7 +2,7 @@ from timeit import default_timer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import Group
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
+from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
@@ -40,6 +40,7 @@ class ProductDetailsView(DetailView):
    model = Product
    context_object_name = 'product'
    
+   # Вернем пользователя, создателя продукта
    def get_context_data(self, **kwargs):
        context = super(ProductDetailsView, self).get_context_data()
        context['owner'] = self.object.created_by
@@ -130,14 +131,16 @@ class OrderDetailView(PermissionRequiredMixin, DetailView):
     
     )
     
+    
 class OrderCreateView(CreateView):
     model = Order
-    fields = "user", "products"
+    fields = "user", "products", "delivery_address", "promocode"
     success_url = reverse_lazy("shopapp:orders_list")
-
+    
+    
 
 class OrderUpdateView(UpdateView):
-    fields = "products", "user"
+    fields = "products", "user", "delivery_address", "promocode"
     template_name_suffix = "_update_form"
     queryset = (
         # Так как на заказе есть дополнительные связи, надо сделать queryset, вместо model
@@ -146,6 +149,7 @@ class OrderUpdateView(UpdateView):
         prefetch_related('products')
     
     )
+    
     def get_success_url(self) -> str:
         return reverse(
             "shopapp:order_details",
@@ -156,3 +160,33 @@ class OrderUpdateView(UpdateView):
 class OrderDeleteView(DeleteView):
     model = Order
     success_url = reverse_lazy("shopapp:orders_list")
+
+
+class ProductsDataExportView(View):
+    def get(self, request: HttpRequest) -> JsonResponse:
+        products = Product.objects.order_by("pk").all()
+        products_data = [
+            {
+                "pk": product.pk,
+                "name": product.name,
+                "price": product.price,
+                "archived": product.archived,
+            }
+            for product in products
+        ]
+        return JsonResponse({"products": products_data})
+    
+    
+class OrdersDataExportView(View):
+    def get(self, request: HttpRequest) -> JsonResponse:
+        orders = Order.objects.order_by("pk").all()
+        orders_data = [
+            {
+                "pk": order.pk,
+                "user": order.user.username,
+                "delivery_address": order.delivery_address,
+                "promocode": order.promocode,
+            }
+            for order in orders
+        ]
+        return JsonResponse({"orders": orders_data})
