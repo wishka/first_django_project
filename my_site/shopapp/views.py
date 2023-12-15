@@ -8,8 +8,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .forms import GroupForm
-from .models import Product, Order
+from .forms import GroupForm, ProductForm
+from .models import Product, Order, ProductImage
 from .permissions import IsProductAuthor
 
 class ShopIndexView(View):
@@ -37,7 +37,9 @@ class GroupsListView(View):
 
 class ProductDetailsView(DetailView):
    template_name = 'shopapp/product-details.html'
-   model = Product
+   # model = Product
+   # prefetch_related - используется для отображения связи многие ко многим
+   queryset = Product.objects.prefetch_related("images")
    context_object_name = 'product'
    
    # Вернем пользователя, создателя продукта
@@ -67,18 +69,16 @@ class ProductCreateView(PermissionRequiredMixin, CreateView):
         # return self.request.user.groups.filter(name="secret-group").exists() # Пример проверки
         return self.request.user.is_superuser # Пример проверки
     model = Product
-    fields = "name", "price", "description", "discount" # Указываем поля, из которых состоит модель
+    form_class = ProductForm
+    # fields = "name", "price", "description", "discount", "preview" # Указываем поля, из которых состоит модель
     success_url = reverse_lazy("shopapp:products_list") # Ленивый метод создания ссылки, только когда идет обращение к этому объекту
-    
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
 
 
 class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = 'shopapp.change_product'
     model = Product
-    fields = "name", "price", "description", "discount"
+    # fields = "name", "price", "description", "discount", "preview"
+    form_class = ProductForm
     template_name_suffix = "_update_form" # Необходимо сделать чтобы вместо Update не отображалось Create во View
     # Просто так не получится вернуть пользователя на страницу продуктов, поэтому надо сделать метод,
     # в котором уже можно переопределить ссылку для возврата на страницу отображения продуктов
@@ -98,6 +98,15 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
             kwargs={"pk": self.object.pk} # На self.object в данном случае доступен тот объект,
             # обновление которого сейчас идет
         )
+    # Так как было добавлено новое поле, надо определить кастомную обработку этого поля
+    # def form_valid(self, form):
+    #     response = super().form_valid(form)
+    #     for image in form.files.getlist('images'):
+    #         ProductImage.objects.create(
+    #             product=self.object,
+    #             image=image
+    #         )
+    #     return response
 
 class ProductDeleteView(DeleteView):
     model = Product

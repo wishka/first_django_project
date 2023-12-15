@@ -8,11 +8,19 @@
   <h1>User info</h1>
   {% if user.is_authenticated %}
   <h2>Details</h2>
-    <p>Username: {{ user.username }}</p>
-    <p>First name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
+    {% if user.profile.avatar %}
+        <img src="{{ user.profile.avatar.url }}" alt="Avatar" />
+        <p><a href="{% url 'myauth:profile_update' %}"> >>> Change avatar <<< </a></p>
+    {% else %}
+      <p>No avatar yet</p>
+      <a href="{% url 'myauth:profile_update' %}"> >>> Update profile <<< </a>
+    {% endif %}
+<!--    <p>Username: {{ user.username }}</p>-->
+<!--    <p>First name: {{ user.first_name }}</p>-->
+<!--    <p>Last name: {{ user.last_name }}</p>-->
     <p>Email: {{ user.email }}</p>
     <p>Bio: {{ user.profile.bio }}</p>
+
   {% else %}
     <p>You are not logged in</p>
   {% endif %}

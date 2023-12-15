@@ -1,14 +1,22 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
+from django.utils.decorators import method_decorator
 
+from .forms import ProfileForm
 from .models import Profile
+
+
 class AboutMeView(TemplateView):
     template_name = "myauth/about-me.html"
     
@@ -89,3 +97,49 @@ def get_session_view(request: HttpRequest) -> HttpResponse:
 class FooBarView(View):
     def get(self, request: HttpRequest) -> JsonResponse:
         return JsonResponse({"foo": "bar", "spam": "eggs"})
+    
+
+def update_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return render(request, 'myauth/about-me.html')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+
+    return render(request, 'myauth/profile_update.html', {'form': form})
+
+
+@method_decorator(login_required, name='dispatch')
+class UserListView(ListView):
+    model = Profile
+    template_name = 'myauth/user-list.html'
+    context_object_name = 'profiles'
+    users = User.objects.all()
+    
+    def get_queryset(self):
+        return super().get_queryset()
+
+@method_decorator(login_required, name='dispatch')
+class UserDetailView(DetailView):
+    # model = Profile
+    queryset = User.objects.prefetch_related("profile")
+    template_name = 'myauth/user_detail.html'
+    context_object_name = 'profile'
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data()
+        context['can_update_avatar'] = self.request.user.is_staff or self.request.user
+        return context
+
+@method_decorator(staff_member_required, name='dispatch')
+class UserUpdateAvatarView(UpdateView):
+    model = Profile
+    template_name = 'myauth/user_update_avatar.html'
+    fields = ['avatar']
+    context_object_name = 'profile'
+    success_url = '/users/'
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('user')

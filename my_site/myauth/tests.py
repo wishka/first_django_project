@@ -1,20 +1,30 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.test import TestCase
 from django.urls import reverse
 # Используем reverse чтобы не указывать прямые ссылки
 
 class GetCookieViewTestCase(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user = User.objects.create_user(username="bob_test", password="querty")
+    
+    @classmethod
+    def tearDownClass(cls):
+        # User is cascade deleted, so all the orders will be deleted as well.
+        cls.user.delete()
+        super().tearDownClass()
+    
     def setUp(self):
-        self.user = User.objects.create(username='user', password='password')
+        self.client.force_login(self.user)
+        
     def test_get_cookie_view(self):
         response = self.client.get(reverse("myauth:cookie-get"), user=self.user)
         # client - позволяет выполнять имитированные запросы к приложению и проверять ответы
         # Используем get для отправки get-запроса
-        # self.assertRedirects(response, '/accounts/login/?next=/accounts/cookie/get')
+        self.assertRedirects(response, '/accounts/login/?next=')
         self.assertContains(response, "Cookie value")
-    
-    def tearDown(self):
-        self.user.delete()
+
         
 
 class FooBarViewTest(TestCase):
