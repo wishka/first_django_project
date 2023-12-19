@@ -23,6 +23,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('req/', include('requestdataapp.urls')),
+    path('api/', include('myapiapp.urls')),
 ]
 # Можно использовать только в основном файле urls.py в корне проекта
 urlpatterns += i18n_patterns(

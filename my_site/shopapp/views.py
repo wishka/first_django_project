@@ -1,6 +1,7 @@
 from timeit import default_timer
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, reverse
@@ -10,7 +11,25 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
-from .permissions import IsProductAuthor
+from .serializers import ProductSerializer, OrderSerializer
+
+
+# ModelViewSet - используется для rest api. Возвращается ответ в json, который
+# необходим для взаимодействия различных api между собой
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    # Если не указать фильтр, будет использоваться тот, который стоит по умолчанию
+    # Укажем другой фильтр
+    filter_backends = [
+        SearchFilter,
+        # добавим фильтр по умолчанию, чтобы можно было искать по полному совпадению
+        DjangoFilterBackend,
+        OrderingFilter # Фильтр для сортировки
+    ]
+    search_fields = ["name", "description"]
+    filterset_fields = ["name", "description", "price", "discount", "archived"]
+    ordering_fields = ["name", "price", "discount"]
 
 
 class ShopIndexView(View):
@@ -123,6 +142,17 @@ class ProductDeleteView(DeleteView):
         self.object.archived = True # Заменим удаление на помещение в архив
         self.object.save()
         return HttpResponseRedirect(success_url)
+    
+
+class OrdersViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    filter_backends = [
+        DjangoFilterBackend,
+        OrderingFilter
+    ]
+    filterset_fields = ["delivery_address", "promocode", "created_at", "user", "products"]
+    ordering_fields = ["user", "created_at"]
     
     
 class OrdersListView(LoginRequiredMixin, ListView):

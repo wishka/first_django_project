@@ -18,8 +18,7 @@
         {% endif %}
         <h3> {% translate 'Images' %}: </h3>
         <div>
-            {{ product.images.count }}
-            {% blocktranslate count images_count=product.previews|length %}
+            {% blocktranslate count images_count=product.images.all|length %}
                 <div>
                     There is only one image available
                     {% plural %}

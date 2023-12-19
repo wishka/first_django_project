@@ -1,18 +1,26 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from .views import (ShopIndexView, GroupsListView,
                     OrdersListView, OrderDetailView,
                     OrderCreateView, ProductCreateView,
                     ProductDetailsView, ProductsListView,
                     ProductUpdateView, ProductDeleteView,
                     OrderUpdateView, OrderDeleteView,
-                    ProductsDataExportView, OrdersDataExportView
+                    ProductsDataExportView, OrdersDataExportView,
+                    ProductViewSet, OrdersViewSet
                     )
 
 
 app_name = "shopapp"
+
+routers = DefaultRouter()
+routers.register("products", ProductViewSet)
+routers.register("orders", OrdersViewSet)
+
 # Обращение к ссылками на страницах всегда идет по имени - name
 urlpatterns = [
     path("", ShopIndexView.as_view(), name="index"),
+    path("api/", include(routers.urls)),
     path('groups/', GroupsListView.as_view(), name='groups_list'),
     path('products/', ProductsListView.as_view(), name='products_list'),
     path('products/export/', ProductsDataExportView.as_view(), name='products-export'),
