@@ -12,9 +12,14 @@ from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
 from .permissions import IsProductAuthor
 
+
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, 'shopapp/shop-index.html')
+        context = {
+            "time_running": default_timer(),
+            "items": 5,
+        }
+        return render(request, 'shopapp/shop-index.html', context=context)
     
 
 class GroupsListView(View):

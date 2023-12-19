@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _, ngettext
 
 
 # Можно сделать функцию, которая будет обрабатывать путь хранения и
@@ -12,6 +13,8 @@ class Product(models.Model):
     class Meta:
         ordering = ["name", "price"] # Сортирует в данном случае по имени и цене
         # db_table = "tech_products" # Позволяет обратиться к базе из которой брать модель
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
         # verbose_name_plural = "products" # Добавляет отображение модели во множественном числе
         
     name = models.CharField(max_length=32)
@@ -45,6 +48,9 @@ class ProductImage(models.Model):
     
     
 class Order(models.Model):
+    class Meta:
+        verbose_name = _("Order")
+        verbose_name_plural = _("Orders")
     delivery_address = models.TextField(null=False, blank=True)
     promocode = models.CharField(max_length=20, null=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

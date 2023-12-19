@@ -2,8 +2,8 @@
 
 {% block body %}
   <h1>User Detail</h1>
-  <h2>{{ user.username }}</h2>
-  <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+  <h2>{{ user.profile.username }}</h2>
+  <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="max-width: 200px">
   
   {% if can_update_avatar %}
     <a href="{% url 'myauth:user_update_avatar' user.profile.pk %}">Update Avatar</a>

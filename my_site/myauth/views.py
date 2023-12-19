@@ -1,22 +1,48 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from django.utils.decorators import method_decorator
+# from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _, ngettext
+# Теперь к функции gettext можно обращаться через _. Позволяет переводить объекты на
+# верхнем уровне, то есть там, где еще не известна локализация пользователя
+# Ленивый перевод это подготовка к переводу
+# ngettext - используется для плюрализации(изменению окончаний названий в соответствии с количеством)
+# 1 товар, 10 товаров и тд
 
 from .forms import ProfileForm
 from .models import Profile
 
 
+# Ленивые функции позволяют возвращать объекты не в момент вызова функции, а в
+# момент обращения к полученному объекту
+# Для создания переводов выполним в терминале python manage.py makemessages -l ru
+# А после этого для компиляции всех переведенных слов
+class HelloView(View):
+    welcome_message = _("Hello world")
+    def get(self, request: HttpRequest) -> HttpResponse:
+        items_string = request.GET.get('items') or 0
+        items = int(items_string)
+        products_line = ngettext(
+            'one product',
+            '{count} products',
+            items,
+        )
+        products_line = products_line.format(count=items)
+        return HttpResponse(f"<h1>{self.welcome_message}</h1>"
+                            f"\n<h2>{products_line}</h2>")
+        
 class AboutMeView(TemplateView):
     template_name = "myauth/about-me.html"
     
@@ -100,13 +126,14 @@ class FooBarView(View):
     
 
 def update_profile(request):
+    profile = request.user.profile
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return render(request, 'myauth/about-me.html')
     else:
-        form = ProfileForm(instance=request.user.profile)
+        form = ProfileForm(instance=profile)
 
     return render(request, 'myauth/profile_update.html', {'form': form})
 
@@ -116,30 +143,48 @@ class UserListView(ListView):
     model = Profile
     template_name = 'myauth/user-list.html'
     context_object_name = 'profiles'
-    users = User.objects.all()
+    
+    def user_list_view(request):
+        users = User.objects.all()
+        return render(request, 'user-list.html', {'users': users})
     
     def get_queryset(self):
         return super().get_queryset()
 
+
 @method_decorator(login_required, name='dispatch')
 class UserDetailView(DetailView):
-    # model = Profile
-    queryset = User.objects.prefetch_related("profile")
+    model = Profile
+    # queryset = User.objects.prefetch_related("profile")
     template_name = 'myauth/user_detail.html'
-    context_object_name = 'profile'
+    context_object_name = 'user'
+    
+    def get_queryset(self):
+        # Вы вызываете prefetch_related, чтобы сократить количество запросов к базе данных
+        return User.objects.prefetch_related("profile")
     
     def get_context_data(self, **kwargs):
-        context = super(UserDetailView, self).get_context_data()
-        context['can_update_avatar'] = self.request.user.is_staff or self.request.user
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        user = context['user']  # 'user' вместо 'profile', чтобы избежать путаницы
+        context['can_update_avatar'] = self.request.user.is_staff or self.request.user == user
         return context
 
-@method_decorator(staff_member_required, name='dispatch')
-class UserUpdateAvatarView(UpdateView):
+
+# @method_decorator(staff_member_required, name='dispatch')
+class UserUpdateAvatarView(UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = 'myauth/user_update_avatar.html'
     fields = ['avatar']
     context_object_name = 'profile'
-    success_url = '/users/'
-
+    
+    def test_func(self):
+        profile = get_object_or_404(Profile, pk=self.kwargs.get('pk'))
+        return self.request.user == profile.user or self.request.user.is_staff
+    
+    def get_success_url(self):
+        # возвращает пользователя на страницу его профиля после изменения аватара
+        return reverse('profile_detail', kwargs={'pk': self.request.user.profile.pk})
+    
     def get_queryset(self):
-        return super().get_queryset().select_related('user')
+        # Здесь можно добавить более специфичную логику, если необходимо
+        return Profile.objects.select_related('user').filter(user=self.request.user)

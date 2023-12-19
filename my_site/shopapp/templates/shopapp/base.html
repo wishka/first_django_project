@@ -26,7 +26,7 @@
     <div><a href="{% url 'myauth:user-list' %}">Users</a></div>
     {% if user.is_authenticated %}
         <div><a href="{% url 'myauth:about-me' %}">My info /</a>
-            {{ user }} / <a href="{% url 'myauth:logout' %}">Logout / </a>
+            {{ user.get_username }} / <a href="{% url 'myauth:logout' %}">Logout / </a>
             {% if user.profile.avatar %}
                 <img src="{{ user.profile.avatar.url }}" style="position: absolute;
                                                                 border-radius: 50%;

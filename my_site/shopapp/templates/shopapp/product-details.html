@@ -1,43 +1,52 @@
 {% extends 'shopapp/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Product #{{ product.pk }}
+    {% translate 'Product' %} #{{ product.pk }}
 {% endblock %}
 
 {% block body %}
-    <h1> Product <strong>{{ product.name }}</strong></h1>
+    <h1><strong>{{ product.name }}</strong></h1>
     <div>
-        <div>Description: <em>{{ product.description }}</em></div>
-        <div>Price: <em>{{ product.price }}</em></div>
-        <div>Discount: <em>{{ product.discount }}</em></div>
-        <div>Created by: <em>{{ product.created_by }}</em></div>
-        <div>Archived: <em>{{ product.archived }}</em></div>
+            <div>{% translate 'Description' %}: <em>{{ product.description }}</em></div>
+            <div>{% translate 'Price' %}: <em>{{ product.price }}</em></div>
+            <div>{% translate 'Discount' %}: <em>{{ product.discount }}</em></div>
+            <div>{% translate 'Created by' %}: <em>{{ product.created_by }}</em></div>
+            <div>{% translate 'Archived' %}: <em>{{ product.archived }}</em></div>
         {% if product.preview %}
             <img src="{{ product.preview.url }}" alt="{{ product.previe.name }}" style="width: 25%">
         {% endif %}
-        <h3> Images: </h3>
+        <h3> {% translate 'Images' %}: </h3>
         <div>
+            {{ product.images.count }}
+            {% blocktranslate count images_count=product.previews|length %}
+                <div>
+                    There is only one image available
+                    {% plural %}
+                    There are {{ images_count }} images available
+                </div>
+            {% endblocktranslate %}
             {% for img in product.images.all %}
                 <div>
                     <img src="{{ img.image.url }}" alt="{{ img.image.name }}" style="width: 25%">
                     <div>{{ img.description }}</div>
                 </div>
             {% empty %}
-                <div>No images uploaded yet...</div>
+                <div>{% translate 'No images' %}...</div>
             {% endfor %}
         </div>
 
     </div>
     <div>
         {% if perms.shopapp.change_product and owner == user %}
-            <a href="{% url 'shopapp:product_update' pk=product.pk %}"> >>> Update product <<< </a>
+            <a href="{% url 'shopapp:product_update' pk=product.pk %}"> >>> {% translate 'Update product' %} <<< </a>
         {% endif %}
     </div>
     <div>
-        <a href="{% url 'shopapp:product_delete' pk=product.pk %}"> >>> Archive product <<< </a>
+        <a href="{% url 'shopapp:product_delete' pk=product.pk %}"> >>> {% translate 'Archive product' %} <<< </a>
     </div>
     <div>
-        <a href="{% url 'shopapp:products_list' %}"> >>> Back to products <<< </a>
+        <a href="{% url 'shopapp:products_list' %}"> >>> {% translate 'Back to products' %} <<< </a>
     </div>
 
 {% endblock %}
