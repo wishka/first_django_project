@@ -27,7 +27,7 @@
     <div><a href="{% url 'myauth:user-list' %}">Users</a></div>
     {% if user.is_authenticated %}
         <div><a href="{% url 'myauth:about-me' %}">My info /</a>
-        {{ user.get_username }} / <a href="{% url 'myauth:logout' %}">Logout / </a>
+            {{ user.get_username }} / <a href="{% url 'myauth:logout' %}">Logout / </a>
             {% if user.profile.avatar %}
                 <img src="{{ user.profile.avatar.url }}" style="position: absolute;
                                                                 border-radius: 50%;
@@ -36,13 +36,11 @@
                                                                 margin-top: -15px;"/>
             {% endif %}
         </div>
-
     {% else %}
         <div>
             <a href="{% url 'myauth:login' %}">Login</a><<<>>>
             <a href="{% url 'myauth:register' %}">Sign up</a>
         </div>
-
     {% endif %}
 </div>
 <hr>
@@ -50,12 +48,5 @@
 {% block body %}
 
 {% endblock %}
-<div>
-    {% now 'H:i' %}
-</div>
-<div>
-    {% now 'l' as current_weekday %}
-    Today is: {{ current_weekday }}
-</div>
 </body>
 </html>

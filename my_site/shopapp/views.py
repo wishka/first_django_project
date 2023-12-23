@@ -1,3 +1,6 @@
+"""
+В этом модуле лежат наборы представлений
+"""
 from timeit import default_timer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -12,11 +15,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer, OrderSerializer
+from drf_spectacular.utils import extend_schema, OpenApiResponse
 
 
 # ModelViewSet - используется для rest api. Возвращается ответ в json, который
 # необходим для взаимодействия различных api между собой
+@extend_schema(description="Product views CRUD")
 class ProductViewSet(ModelViewSet):
+    """
+    Набор представлений для действий над Product
+    Полный CRUD для сущностей товара
+    """
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     # Если не указать фильтр, будет использоваться тот, который стоит по умолчанию
@@ -30,13 +39,30 @@ class ProductViewSet(ModelViewSet):
     search_fields = ["name", "description"]
     filterset_fields = ["name", "description", "price", "discount", "archived"]
     ordering_fields = ["name", "price", "discount"]
+    
+    @extend_schema(
+        # Короткая информация об этом view
+        summary="Get 1 product by id",
+        description="Retrieve **product**, return 404 if not found",
+        responses= {
+            200: ProductSerializer,
+            404: OpenApiResponse(description="Empty response. Product not found"),
+        }
+    )
+    def retrieve(self, *args, **kwargs):
+        return super().retrieve(*args, **kwargs)
 
 
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
+        products = [
+            ('Laptop', 1999),
+            ('Dasktop', 3004),
+            ('Smartphone', 999),
+        ]
         context = {
             "time_running": default_timer(),
-            "items": 5,
+            "products": products,
         }
         return render(request, 'shopapp/shop-index.html', context=context)
     

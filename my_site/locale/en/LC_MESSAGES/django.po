@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-19 04:13+0000\n"
+"POT-Creation-Date: 2023-12-21 12:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: my_site/settings.py:130
+#: BlogApp/models.py:9
+msgid "Author"
+msgstr ""
+
+#: BlogApp/models.py:10
+msgid "Authors"
+msgstr ""
+
+#: BlogApp/models.py:19
+msgid "Category"
+msgstr ""
+
+#: BlogApp/models.py:20
+msgid "Categories"
+msgstr ""
+
+#: BlogApp/models.py:28
+msgid "Tag"
+msgstr ""
+
+#: BlogApp/models.py:29
+msgid "Tags"
+msgstr ""
+
+#: BlogApp/models.py:38
+msgid "Article"
+msgstr ""
+
+#: BlogApp/models.py:39
+msgid "Articles"
+msgstr ""
+
+#: my_site/settings.py:137
 msgid "English"
 msgstr ""
 
-#: my_site/settings.py:131
+#: my_site/settings.py:138
 msgid "Russian"
 msgstr ""
 
@@ -37,21 +69,21 @@ msgid_plural "{count} products"
 msgstr[0] "One product"
 msgstr[1] "{count} Products"
 
-#: shopapp/models.py:16 shopapp/templates/shopapp/product-details.html:5
+#: shopapp/models.py:20 shopapp/templates/shopapp/product-details.html:5
 #, fuzzy
 #| msgid "Products"
 msgid "Product"
 msgstr "Products"
 
-#: shopapp/models.py:17 shopapp/templates/shopapp/products-list.html:10
+#: shopapp/models.py:21 shopapp/templates/shopapp/products-list.html:10
 msgid "Products"
 msgstr "Products"
 
-#: shopapp/models.py:52
+#: shopapp/models.py:56
 msgid "Order"
 msgstr ""
 
-#: shopapp/models.py:53
+#: shopapp/models.py:57
 msgid "Orders"
 msgstr ""
 
@@ -81,7 +113,7 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
-#: shopapp/templates/shopapp/product-details.html:22
+#: shopapp/templates/shopapp/product-details.html:21
 #, python-format
 msgid ""
 "\n"
@@ -96,25 +128,25 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: shopapp/templates/shopapp/product-details.html:35
+#: shopapp/templates/shopapp/product-details.html:34
 msgid "No images"
 msgstr ""
 
-#: shopapp/templates/shopapp/product-details.html:42
+#: shopapp/templates/shopapp/product-details.html:41
 #, fuzzy
 #| msgid "one product"
 #| msgid_plural "{count} products"
 msgid "Update product"
 msgstr "One product"
 
-#: shopapp/templates/shopapp/product-details.html:46
+#: shopapp/templates/shopapp/product-details.html:45
 #, fuzzy
 #| msgid "one product"
 #| msgid_plural "{count} products"
 msgid "Archive product"
 msgstr "One product"
 
-#: shopapp/templates/shopapp/product-details.html:49
+#: shopapp/templates/shopapp/product-details.html:48
 #, fuzzy
 #| msgid "one product"
 #| msgid_plural "{count} products"

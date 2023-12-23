@@ -1,0 +1,31 @@
+{% extends 'BlogApp/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    New article
+{% endblock %}
+
+{% block body %}
+
+    <h1> New article creation </h1>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+              <p>
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                  <small style="color: grey">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <strong style="color: red">{{ error }}</strong>
+                {% endfor %}
+              </p>
+            {% endfor %}
+            <button type="submit">Create article</button>
+        </form>
+    </div>
+<div>
+    <a href="{% url 'shopapp:products_list' %}"> >>> Back to products <<< </a>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-19 04:13+0000\n"
+"POT-Creation-Date: 2023-12-21 12:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,43 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: my_site/settings.py:130
+#: BlogApp/models.py:9
+msgid "Author"
+msgstr "Автор"
+
+#: BlogApp/models.py:10
+msgid "Authors"
+msgstr "Авторы"
+
+#: BlogApp/models.py:19
+msgid "Category"
+msgstr "Категория"
+
+#: BlogApp/models.py:20
+msgid "Categories"
+msgstr "Категории"
+
+#: BlogApp/models.py:28
+msgid "Tag"
+msgstr "Тэг"
+
+#: BlogApp/models.py:29
+msgid "Tags"
+msgstr "Тэги"
+
+#: BlogApp/models.py:38
+msgid "Article"
+msgstr "Статья"
+
+#: BlogApp/models.py:39
+msgid "Articles"
+msgstr "Статьи"
+
+#: my_site/settings.py:137
 msgid "English"
 msgstr "Английский"
 
-#: my_site/settings.py:131
+#: my_site/settings.py:138
 msgid "Russian"
 msgstr "Русский"
 
@@ -41,19 +73,19 @@ msgstr[1] "{count} товара"
 msgstr[2] "{count} товаров"
 msgstr[3] ""
 
-#: shopapp/models.py:16 shopapp/templates/shopapp/product-details.html:5
+#: shopapp/models.py:20 shopapp/templates/shopapp/product-details.html:5
 msgid "Product"
 msgstr "Товар"
 
-#: shopapp/models.py:17 shopapp/templates/shopapp/products-list.html:10
+#: shopapp/models.py:21 shopapp/templates/shopapp/products-list.html:10
 msgid "Products"
 msgstr "Товары"
 
-#: shopapp/models.py:52
+#: shopapp/models.py:56
 msgid "Order"
 msgstr "Заказ"
 
-#: shopapp/models.py:53
+#: shopapp/models.py:57
 msgid "Orders"
 msgstr "Заказы"
 
@@ -83,7 +115,7 @@ msgstr "Архивировано"
 msgid "Images"
 msgstr "Изображения"
 
-#: shopapp/templates/shopapp/product-details.html:22
+#: shopapp/templates/shopapp/product-details.html:21
 #, fuzzy, python-format
 #| msgid ""
 #| "\n"
@@ -102,7 +134,7 @@ msgid ""
 "                    "
 msgid_plural ""
 "\n"
-"                    Доступно %(images_count)s изображений\n"
+"                    There are %(images_count)s images available\n"
 "                </div>\n"
 "            "
 msgstr[0] ""
@@ -126,19 +158,19 @@ msgstr[3] ""
 "            </div>\n"
 "        "
 
-#: shopapp/templates/shopapp/product-details.html:35
+#: shopapp/templates/shopapp/product-details.html:34
 msgid "No images"
 msgstr "Пока нет изображений"
 
-#: shopapp/templates/shopapp/product-details.html:42
+#: shopapp/templates/shopapp/product-details.html:41
 msgid "Update product"
 msgstr "Обновить товар"
 
-#: shopapp/templates/shopapp/product-details.html:46
+#: shopapp/templates/shopapp/product-details.html:45
 msgid "Archive product"
 msgstr "Архивировать"
 
-#: shopapp/templates/shopapp/product-details.html:49
+#: shopapp/templates/shopapp/product-details.html:48
 msgid "Back to products"
 msgstr "Вернуться к списку товаров"
 

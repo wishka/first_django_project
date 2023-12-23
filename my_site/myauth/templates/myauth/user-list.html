@@ -6,6 +6,7 @@
     {% for profile in profiles %}
       <li>
         <a href="{% url 'myauth:user_detail' pk=profile.user.pk %}">{{ profile.user.username }}</a>
+        / User ID: {{ profile.user.id }}
       </li>
     {% endfor %}
   </ul>

@@ -30,12 +30,13 @@
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.django_migrations" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_group_permissions" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.shopapp_product" active-filter-id="" />
-    <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.django_session" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.myauth_profile" active-filter-id="" />
+    <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.django_session" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_user" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_user_groups" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.auth_group" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.shopapp_order_products" active-filter-id="" />
+    <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.BlogApp_category" active-filter-id="" />
     <filter-actions connection-id="6ef399d5-629a-4946-8496-b4117e5e2d84" dataset="main.shopapp_order" active-filter-id="EMPTY_FILTER">
       <filter id="c7e2bc93-abb0-498a-af1a-8246348b4159" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />

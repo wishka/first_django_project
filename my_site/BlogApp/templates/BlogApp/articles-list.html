@@ -1,0 +1,49 @@
+{% extends 'BlogApp/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% translate 'Articles list' %}
+{% endblock %}
+
+{% block body %}
+
+    <h1> {% translate 'Articles' %}: </h1>
+        {% if articles %}
+        {% blocktranslate count article_count=articles|length %}
+            <div>
+                There is only one article
+                {% plural %}
+                There are {{ article_count }} articles
+            </div>
+        {% endblocktranslate %}
+    <div>{% for article in articles %}</div>
+        <div>
+            <p>{% translate 'Title' context 'article name' %}: {{ article.title }}</p>
+            <p>{% translate 'Content' %}: {{ article.content }}</p>
+            <p>{% translate 'Publication data' %}: {{ article.pub_date }}</p>
+            <p>{% translate 'Author' %}: {{ article.author }}</p>
+            <p>{% translate 'Category' %}: {{ article.category }}</p>
+            <p>{% translate 'Tags' %}:
+                {% for tag in article.tags.all %}
+                    {{ tag.name }}
+                {% endfor %}</p>
+        </div>
+        <hr>
+        {% endfor %}
+        {% else %}
+            <h3>No articles yet...</h3>
+            <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>
+<!--    {% if perms.shopapp.add_product %}-->
+<!--        {% translate 'New product' as create_product_url %}-->
+<!--        {% blocktranslate %}-->
+<!--            <h3>No products yet...</h3>-->
+<!--                <a href="{{ create_product_url }}"> >>> Create a new one <<< </a>-->
+<!--        {% endblocktranslate %}-->
+<!--        {% endif %}-->
+<!--    {% endif %}-->
+<!--<div>-->
+<!--    {% if perms.shopapp.add_product %}-->
+<!--        <a href="{% url 'shopapp:create_product' %}"> >>> {% translate 'New product' %} <<< </a>-->
+<!--    {% endif %}-->
+<!--</div>-->
+{% endblock %}
