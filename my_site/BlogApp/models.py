@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -24,6 +25,8 @@ class Category(models.Model):
     
     name = models.CharField(max_length=40, null=False, blank=False, db_index=True)
     
+    def __str__(self):
+        return self.name
 
 class Tag(models.Model):
     """ Модель тегов для статей """
@@ -32,7 +35,9 @@ class Tag(models.Model):
         verbose_name_plural = _("Tags")
     
     name = models.CharField(max_length=20, blank=True)
-
+    
+    def __str__(self):
+        return self.name
 
 class Article(models.Model):
     """Модель для создания статей."""
@@ -48,4 +53,5 @@ class Article(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
+    
     

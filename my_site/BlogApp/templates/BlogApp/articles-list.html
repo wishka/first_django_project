@@ -16,20 +16,18 @@
                 There are {{ article_count }} articles
             </div>
         {% endblocktranslate %}
-    <div>{% for article in articles %}</div>
+    <div>{% for title, content, pub_date, author, category, tag in articles %}</div>
         <div>
-            <p>{% translate 'Title' context 'article name' %}: {{ article.title }}</p>
-            <p>{% translate 'Content' %}: {{ article.content }}</p>
-            <p>{% translate 'Publication data' %}: {{ article.pub_date }}</p>
-            <p>{% translate 'Author' %}: {{ article.author }}</p>
-            <p>{% translate 'Category' %}: {{ article.category }}</p>
-            <p>{% translate 'Tags' %}:
-                {% for tag in article.tags.all %}
-                    {{ tag.name }}
-                {% endfor %}</p>
+            <p>{% translate 'Title' context 'article name' %}: {{ title }}</p>
+            <p>{% translate 'Content' %}: {{ content }}</p>
+            <p>{% translate 'Publication data' %}: {{ pub_date }}</p>
+            <p>{% translate 'Author' %}: {{ author }}</p>
+            <p>{% translate 'Category' %}:{{ category }}</p>
+            <p>{% translate 'Tags' %}: {{ tag }}</p>
         </div>
         <hr>
         {% endfor %}
+        <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>
         {% else %}
             <h3>No articles yet...</h3>
             <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>

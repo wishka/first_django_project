@@ -29,11 +29,13 @@ class Product(models.Model):
     archived = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, on_delete=models.PROTECT, default=None)
     preview = models.ImageField(null=True, blank=True, upload_to=product_preview_directory_path)
+    
     @property
     def description_short(self) -> str:
         if len(self.description) < 48:
             return self.description
         return self.description[:48] + "..."
+    
     def __str__(self) -> str:
         return f"Product(pk = {self.pk}), name = {self.name!r}"
 
