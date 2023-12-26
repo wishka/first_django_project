@@ -16,14 +16,17 @@
                 There are {{ article_count }} articles
             </div>
         {% endblocktranslate %}
-    <div>{% for title, content, pub_date, author, category, tag in articles %}</div>
+    <div>{% for article in article_list %}</div>
         <div>
-            <p>{% translate 'Title' context 'article name' %}: {{ title }}</p>
-            <p>{% translate 'Content' %}: {{ content }}</p>
-            <p>{% translate 'Publication data' %}: {{ pub_date }}</p>
-            <p>{% translate 'Author' %}: {{ author }}</p>
-            <p>{% translate 'Category' %}:{{ category }}</p>
-            <p>{% translate 'Tags' %}: {{ tag }}</p>
+            <p>{% translate 'Title' context 'article name' %}: {{ article.title }}</p>
+            <p>{% translate 'Content' %}: {{ article.content }}</p>
+            <p>{% translate 'Publication data' %}: {{ article.pub_date }}</p>
+            <p>{% translate 'Author' %}: {{ article.author.name }}</p>
+            <p>{% translate 'Category' %}: {{ article.category.name }}</p>
+            <p>{% translate 'Tags' %}:
+                {% for tag in article.tags.all %}
+                    {{ tag.name }}
+                {% endfor %}</p>
         </div>
         <hr>
         {% endfor %}
@@ -31,17 +34,5 @@
         {% else %}
             <h3>No articles yet...</h3>
             <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>
-<!--    {% if perms.shopapp.add_product %}-->
-<!--        {% translate 'New product' as create_product_url %}-->
-<!--        {% blocktranslate %}-->
-<!--            <h3>No products yet...</h3>-->
-<!--                <a href="{{ create_product_url }}"> >>> Create a new one <<< </a>-->
-<!--        {% endblocktranslate %}-->
-<!--        {% endif %}-->
-<!--    {% endif %}-->
-<!--<div>-->
-<!--    {% if perms.shopapp.add_product %}-->
-<!--        <a href="{% url 'shopapp:create_product' %}"> >>> {% translate 'New product' %} <<< </a>-->
-<!--    {% endif %}-->
-<!--</div>-->
+    {% endif %}
 {% endblock %}
