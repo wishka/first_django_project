@@ -8,7 +8,7 @@
 {% block body %}
 
     <h1> {% translate 'Articles' %}: </h1>
-        {% if articles %}
+
         {% blocktranslate count article_count=articles|length %}
             <div>
                 There is only one article
@@ -31,8 +31,4 @@
         <hr>
         {% endfor %}
         <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>
-        {% else %}
-            <h3>No articles yet...</h3>
-            <a href="{% url 'BlogApp:article-create' %}"> >>> Create a new one <<< </a>
-    {% endif %}
 {% endblock %}

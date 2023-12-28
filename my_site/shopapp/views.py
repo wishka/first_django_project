@@ -1,6 +1,7 @@
 """
 В этом модуле лежат наборы представлений
 """
+import logging
 from timeit import default_timer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -16,6 +17,10 @@ from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer, OrderSerializer
 from drf_spectacular.utils import extend_schema, OpenApiResponse
+
+
+# Это стандартный формат создания нового логгера
+log = logging.getLogger(__name__)
 
 
 # ModelViewSet - используется для rest api. Возвращается ответ в json, который
@@ -64,6 +69,9 @@ class ShopIndexView(View):
             "time_running": default_timer(),
             "products": products,
         }
+        # Необходимо указать параметры форматирования
+        log.debug("Products for shop index: %s", products)
+        log.info("Rendering shop index")
         return render(request, 'shopapp/shop-index.html', context=context)
     
 
@@ -244,6 +252,9 @@ class ProductsDataExportView(View):
             }
             for product in products
         ]
+        elem = products_data[0]
+        name = elem["name"]
+        print("name:", name)
         return JsonResponse({"products": products_data})
     
     

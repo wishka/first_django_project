@@ -1,0 +1,58 @@
+2023-12-27 06:03:52,878 INFO shopapp.views: Rendering shop index
+2023-12-27 06:03:53,542 INFO shopapp.views: Rendering shop index
+2023-12-27 06:06:19,754 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:06:20,086 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:06:39,908 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:06:40,213 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:08:24,958 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:08:25,297 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:08:47,040 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:08:47,345 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:09:24,712 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:09:25,031 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:37:00,748 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:38:58,653 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-27 06:38:59,056 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-27 06:39:14,707 INFO shopapp.views: Rendering shop index
+2023-12-28 04:17:39,921 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 04:17:55,197 WARNING django.request: Not Found: /
+2023-12-28 04:18:46,686 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 04:18:47,167 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 04:19:00,695 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 04:19:00,997 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 04:19:24,981 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 04:19:25,325 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 04:19:45,035 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 04:19:45,399 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:50:24,366 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:50:36,977 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2023-12-28 12:50:37,244 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:50:54,586 WARNING django.request: Not Found: /favicon.ico
+2023-12-28 12:52:10,507 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 12:52:10,917 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:52:27,739 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 12:52:28,268 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:52:30,291 ERROR django.request: Internal Server Error: /ru/shop/products/export/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/views.py", line 256, in get
+    name = elem["nme"]
+           ~~~~^^^^^^^
+KeyError: 'nme'
+2023-12-28 12:55:49,928 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2023-12-28 12:55:50,350 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2023-12-28 12:59:07,087 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.

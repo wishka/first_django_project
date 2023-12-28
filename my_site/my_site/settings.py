@@ -14,6 +14,13 @@ from pathlib import Path
 
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+import sentry_sdk
+
+sentry_sdk.init(
+    dsn="https://18ea8a338761df6f483d65da425f9aeb@o4506473402990592.ingest.sentry.io/4506473418391552",
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +35,22 @@ SECRET_KEY = 'django-insecure-j3st_$hf6s(^v##ef-y88ve5%$#ht4q*@l^_&t$ure*9*7l#oz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "0.0.0.0",
+    "127.0.0.1",
+]
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+if DEBUG:
+    import socket
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS.append("10.0.2.2")
+    INTERNAL_IPS.extend(
+        [ip[: ip.rfind(".")] + ".1" for ip in ips]
+    )
 
 # Application definition
 
@@ -45,6 +66,7 @@ INSTALLED_APPS = [
     'myauth.apps.MyauthConfig',
     'myapiapp.apps.MyapiappConfig',
     'django.contrib.admindocs',
+    'debug_toolbar',
     'rest_framework',
     'django_filters',
     'drf_spectacular',
@@ -64,6 +86,7 @@ MIDDLEWARE = [
     # 'requestdataapp.middlewares.ThrottlingMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.admindocs.middleware.XViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'my_site.urls'
@@ -169,24 +192,39 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
 }
 
+# Объявим имя лог файла
+LOGFILE_NAME = BASE_DIR / "log.txt"
+# Также объявим максимальный размер файла для ротации
+LOGFILE_SIZE = 5 * 1024 * 1024
+# А также сколько файлов будем хранить до ротации
+LOGFILE_COUNT = 3
+# После этого добавим хэндлер, который будет это обрабатывать
+
 LOGGING = {
     "version": 1,
-    "filters": {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(asctime)s %(levelname)s %(name)s: %(message)s"
         },
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler'
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        "logfile": {
+            # 'class': 'logging.handlers.TimedRotatingFileHandler', # ротация по дням
+            'class': 'logging.handlers.RotatingFileHandler', # для ротации по размеру
+            'filename': LOGFILE_NAME,
+            'maxBytes': LOGFILE_SIZE,
+            'backupCount': LOGFILE_COUNT,
+            'formatter': 'verbose', # Дополнительно можно указать как форматировать эти логи
         },
     },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
-    }
+    "root": {
+        "handlers": ["console", "logfile"],
+        # От уровня зависит, какие логи будут выведены. Debug, Info, Warning, Error, Critical
+        "level": "INFO",
+    },
 }
