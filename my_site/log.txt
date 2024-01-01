@@ -4949,3 +4949,121 @@ Traceback (most recent call last):
   File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-01 11:45:50,589 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-01 11:45:51,005 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:46:11,504 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-01 11:46:12,130 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:46:21,450 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-01 11:46:21,846 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:46:32,426 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-01 11:46:32,796 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:47:38,926 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-01 11:47:39,369 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:48:10,780 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/views.py changed, reloading.
+2024-01-01 11:48:12,316 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:50:26,572 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:50:27,157 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:50:40,726 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:50:41,144 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:51:15,478 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:51:15,929 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:51:33,744 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:51:34,143 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:51:49,830 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:51:50,253 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:52:10,119 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:52:10,496 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:52:36,601 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-01 11:52:37,160 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:54:14,866 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:54:21,406 ERROR django.request: Internal Server Error: /sitemap.xml
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 34, in inner
+    response = func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 128, in sitemap
+    urls.extend(site.get_urls(page=page, site=req_site, protocol=req_protocol))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 167, in get_urls
+    return self._urls(page, protocol, domain)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 187, in _urls
+    loc = f"{protocol}://{domain}{self._location(item)}"
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 122, in _location
+    return self._get("location", item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 92, in _get
+    return attr(item)
+           ^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 132, in location
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/rss_news/models.py", line 12, in get_absolute_url
+    return reverse("rss_news:news", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-01 11:55:13,335 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2024-01-01 11:55:14,189 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-01 11:55:19,268 ERROR django.request: Internal Server Error: /sitemap.xml
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 34, in inner
+    response = func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 128, in sitemap
+    urls.extend(site.get_urls(page=page, site=req_site, protocol=req_protocol))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 167, in get_urls
+    return self._urls(page, protocol, domain)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 187, in _urls
+    loc = f"{protocol}://{domain}{self._location(item)}"
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 122, in _location
+    return self._get("location", item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 92, in _get
+    return attr(item)
+           ^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 132, in location
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/rss_news/models.py", line 12, in get_absolute_url
+    return reverse("rss_news:news", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-01 11:58:38,067 WARNING django.request: Not Found: /admin/import_products_csv
+2024-01-01 11:58:48,392 WARNING django.request: Not Found: /admin/import-products-csv
+2024-01-01 11:59:15,377 WARNING django.request: Not Found: /admin/csv_form
+2024-01-01 12:00:19,528 WARNING django.request: Not Found: /admin/import-products-csv
+2024-01-01 12:02:41,391 WARNING django.request: Not Found: /admin/import_products_csv
+2024-01-01 12:04:28,336 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/forms.py changed, reloading.
+2024-01-01 12:04:28,963 INFO django.utils.autoreload: Watching for file changes with StatReloader

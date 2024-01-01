@@ -29,3 +29,4 @@ class GroupForm(ModelForm):
 
 class CSVImportForm(forms.Form):
     csv_file = forms.FileField()
+    

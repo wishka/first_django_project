@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'myauth.apps.MyauthConfig',
     'myapiapp.apps.MyapiappConfig',
     'django.contrib.admindocs',
+    'django.contrib.sitemaps',
     'debug_toolbar',
     'rest_framework',
     'django_filters',

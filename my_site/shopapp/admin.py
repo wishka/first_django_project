@@ -89,6 +89,7 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
         
         self.message_user(request, "Data from CSV was imported!")
         return redirect("..")
+    
     def get_urls(self):
         urls = super().get_urls()
         new_urls = [
