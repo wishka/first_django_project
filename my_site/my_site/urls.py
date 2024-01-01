@@ -30,12 +30,14 @@ urlpatterns = [
     path('api/schema/swagger', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger'),
     path('api/schema/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include('myapiapp.urls')),
+    path('rss/', include('rss_news.urls')),
 ]
 # Можно использовать только в основном файле urls.py в корне проекта
 urlpatterns += i18n_patterns(
     path('accounts/', include('myauth.urls')),
     path('shop/', include('shopapp.urls')),
-    path('articles/', include('BlogApp.urls'))
+    path('articles/', include('BlogApp.urls')),
+    
 )
 
 if settings.DEBUG:

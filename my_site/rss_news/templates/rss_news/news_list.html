@@ -1,0 +1,21 @@
+{% extends "rss_news/base.html" %}
+
+{% block title %}
+    RSS News
+{% endblock %}
+
+{% block body %}
+    <h1>RSS News</h1>
+    {% if object_list %}
+        <div>
+            {% for item in object_list %}
+                <div>
+                    <p><a href="{% url 'rss_news:news' pk=news.pk %}"> {{ item.title }}</a></p>
+                    <p>Published: {{ item.published_at }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3>No news yet...</h3>
+    {% endif %}
+{% endblock %}

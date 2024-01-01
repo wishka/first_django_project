@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy
 import sentry_sdk
 
 sentry_sdk.init(
@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     'BlogApp.apps.BlogappConfig',
+    'rss_news.apps.RssNewsConfig',
 ]
 
 MIDDLEWARE = [
@@ -157,9 +158,9 @@ LOCALE_PATHS = [
 ]
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('ru', _('Russian'))
-    ]
+    ('en', gettext_lazy('English')),
+    ('ru', gettext_lazy('Russian')),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

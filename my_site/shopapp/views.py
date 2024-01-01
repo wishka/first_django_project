@@ -1,10 +1,16 @@
 """
 В этом модуле лежат наборы представлений
 """
+from csv import DictWriter
 import logging
 from timeit import default_timer
+
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.decorators import action
+from rest_framework.request import Request
+from rest_framework.parsers import MultiPartParser
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
@@ -16,6 +22,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer, OrderSerializer
+from .common import save_csv_products
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 
 
@@ -56,7 +63,37 @@ class ProductViewSet(ModelViewSet):
     )
     def retrieve(self, *args, **kwargs):
         return super().retrieve(*args, **kwargs)
-
+    
+    @action(methods=["get"], detail=False) #Если указать true, то будет построена ссылка с учетом PK
+    def download_csv(self, request: Request):
+        response: HttpResponse = HttpResponse(content_type='text/csv')
+        filename = "products-export.csv"
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        
+        queryset = self.filter_queryset(self.get_queryset())
+        fields = [
+            "name", "description", "price", "discount"
+        ]
+        queryset = queryset.only(*fields)
+        writer = DictWriter(response, fieldnames=fields)
+        writer.writeheader()
+        
+        for product in queryset:
+            writer.writerow({
+                field: getattr(product, field)
+                for field in fields
+            })
+        
+        return response
+    
+    @action(detail=False, methods=["post"], parser_classes=[MultiPartParser])
+    def upload_csv(self, request: Request):
+        products = save_csv_products(
+            request.FILES["file"].file,
+            encoding=request.encoding
+        )
+        serializer = self.get_serializer(products, many=True)
+        return Response(serializer.data)
 
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
