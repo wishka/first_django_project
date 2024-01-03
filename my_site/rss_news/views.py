@@ -15,6 +15,7 @@ class RSSListView(ListView):
 class RSSDetailView(DetailView):
     model = News
     
+    
 class LatestNewsFeed(Feed):
     title = 'Latest News'
     description = 'Latest News updates from First Django Application'

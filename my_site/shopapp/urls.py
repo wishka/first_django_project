@@ -7,7 +7,7 @@ from .views import (ShopIndexView, GroupsListView,
                     ProductUpdateView, ProductDeleteView,
                     OrderUpdateView, OrderDeleteView,
                     ProductsDataExportView, OrdersDataExportView,
-                    ProductViewSet, OrdersViewSet
+                    ProductViewSet, OrdersViewSet, LatestProductFeed
                     )
 
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/new/', ProductCreateView.as_view(), name='create_product'),
     path('products/<int:pk>/update', ProductUpdateView.as_view(), name='product_update'),
     path('products/<int:pk>/archive', ProductDeleteView.as_view(), name='product_delete'),
+    path('products/latest/feed/', LatestProductFeed(), name='products-feed'),
     path('orders/', OrdersListView.as_view(), name='orders_list'),
     path('orders/export/', OrdersDataExportView.as_view(), name='orders-export'),
     path('order/new/', OrderCreateView.as_view(), name='create_order'),

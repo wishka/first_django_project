@@ -33,7 +33,7 @@ urlpatterns = [
     path('api/schema/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('api/', include('myapiapp.urls')),
     path('rss/', include('rss_news.urls')),
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap",),
 ]
 # Можно использовать только в основном файле urls.py в корне проекта
 urlpatterns += i18n_patterns(

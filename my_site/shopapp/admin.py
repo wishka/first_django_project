@@ -1,3 +1,6 @@
+from csv import DictReader
+from io import TextIOWrapper
+
 from django.contrib import admin
 from django.db.models import QuerySet
 from django.http import HttpRequest, HttpResponse
@@ -82,24 +85,27 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
                 "form": form,
             }
             return render(request, "admin/csv_form.html", context, status=400)
-        save_csv_products(
-            file=form.files["csv_file"].file,
+        csv_products = TextIOWrapper(
+            form.files["csv_file"].file,
             encoding=request.encoding
         )
-        
+        reader = DictReader(csv_products)
+        for row in reader:
+            product = Product.objects.create(
+                name=row["name"],
+                description=row["description"],
+                price=row["price"],
+                discount=row["discount"],
+                created_at=row["created_at"],
+                created_by=row["created_by"],
+            )
+            products_ids = row["products_ids"].split(",")
+            product.set(products_ids)
+            
         self.message_user(request, "Data from CSV was imported!")
         return redirect("..")
     
-    def get_urls(self):
-        urls = super().get_urls()
-        new_urls = [
-            path(
-                "import-products-csv/",
-                self.import_csv,
-                name="import_products_csv",
-            )
-        ]
-        return new_urls + urls
+
 
 
 class ProductInline(admin.TabularInline): # можно использовать StackedInline. Меняет только вид в админке
@@ -118,3 +124,46 @@ class OrderAdmin(admin.ModelAdmin):
     
     def user_verbose_name(self, obj: Order) -> str:
         return obj.user.first_name or obj.user.username
+    
+    def import_csv(self, request: HttpRequest) -> HttpResponse:
+        if request.method == "GET":
+            form = CSVImportForm()
+            context = {
+                "form": form,
+            }
+            return render(request, "admin/csv_form.html", context)
+        form = CSVImportForm(request.POST, request.FILES)
+        if not form.is_valid():
+            context = {
+                "form": form,
+            }
+            return render(request, "admin/csv_form.html", context, status=400)
+        csv_file = TextIOWrapper(
+            form.files["csv_file"].file,
+            encoding=request.encoding,
+        )
+        reader = DictReader(csv_file)
+        
+        for row in reader:
+            order = Order.objects.create(
+                delivery_address=row["delivery_address"],
+                promocode=row["promocode"],
+                created_at=row["created_at"],
+                user_id=row["user_id"],
+            )
+            products_ids = row["products_ids"].split(",")
+            order.products.set(products_ids)
+        
+        self.message_user(request, "Data from CSV was imported")
+        return redirect("..")
+    
+    def get_urls(self):
+        urls = super().get_urls()
+        new_urls = [
+            path(
+                "import-orders-csv/",
+                self.import_csv,
+                name="import_orders_csv",
+            )
+        ]
+        return new_urls + urls

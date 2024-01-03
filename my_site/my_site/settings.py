@@ -76,6 +76,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Строго в самом верху cache
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,6 +91,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+    # FetchFromCacheMiddleware - должен быть в самом низу
 ]
 
 ROOT_URLCONF = 'my_site.urls'
@@ -121,6 +125,14 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache"
+    }
+}
+
+CACHE_MIDDLEWARE_SECONDS = 3600
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

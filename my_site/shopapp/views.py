@@ -5,6 +5,7 @@ from csv import DictWriter
 import logging
 from timeit import default_timer
 
+from django.contrib.syndication.views import Feed
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -14,8 +15,8 @@ from rest_framework.parsers import MultiPartParser
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, redirect, reverse
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -109,6 +110,7 @@ class ShopIndexView(View):
         # Необходимо указать параметры форматирования
         log.debug("Products for shop index: %s", products)
         log.info("Rendering shop index")
+        print('shop index context', context)
         return render(request, 'shopapp/shop-index.html', context=context)
     
 
@@ -308,3 +310,22 @@ class OrdersDataExportView(View):
             for order in orders
         ]
         return JsonResponse({"orders": orders_data})
+
+
+class LatestProductFeed(Feed):
+    title = 'Latest Products Update'
+    description = 'Latest Products Updates from First Django Application'
+    link = reverse_lazy("shopapp:products")
+    
+    def items(self):
+        return (
+            Product.objects
+            .filter(archived=False)
+            .order_by('-created_at')[:5]  # При помощи среза закгрузим только последние 5 статей
+        )
+    
+    def item_title(self, item: Product):
+        return item.name
+    
+    def item_description(self, item: Product):
+        return item.description[:200]
