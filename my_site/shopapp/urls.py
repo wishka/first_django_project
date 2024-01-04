@@ -9,6 +9,7 @@ from .views import (ShopIndexView, GroupsListView,
                     ProductsDataExportView, OrdersDataExportView,
                     ProductViewSet, OrdersViewSet, LatestProductFeed
                     )
+from django.views.decorators.cache import cache_page
 
 
 app_name = "shopapp"
@@ -19,7 +20,8 @@ routers.register("orders", OrdersViewSet)
 
 # Обращение к ссылками на страницах всегда идет по имени - name
 urlpatterns = [
-    path("", ShopIndexView.as_view(), name="index"),
+    # Добавим декоратор на класс ShopIndexView, чтобы кешировать класс
+    path("", cache_page(60 * 3)(ShopIndexView.as_view()), name="index"),
     path("api/", include(routers.urls)),
     path('groups/', GroupsListView.as_view(), name='groups_list'),
     path('products/', ProductsListView.as_view(), name='products_list'),

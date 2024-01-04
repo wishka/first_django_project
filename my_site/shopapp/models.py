@@ -32,7 +32,7 @@ class Product(models.Model):
     preview = models.ImageField(null=True, blank=True, upload_to=product_preview_directory_path)
     
     def get_absolute_url(self):
-        return reverse("shopapp:products", kwargs={"pk": self.pk})
+        return reverse("shopapp:product_details", kwargs={"pk": self.pk})
     
     @property
     def description_short(self) -> str:
@@ -69,4 +69,4 @@ class Order(models.Model):
     receipt = models.FileField(null=True, upload_to='orders/receipts/')
     
     def get_absolute_url(self):
-        return reverse("shopapp:orders", kwargs={"pk": self.pk})
+        return reverse("shopapp:order_details", kwargs={"pk": self.pk})

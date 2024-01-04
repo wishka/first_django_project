@@ -1,5 +1,5 @@
 {% extends 'shopapp/base.html' %}
-
+{% load cache %}
 {% block title %}
     Shop index
 {% endblock %}
@@ -13,9 +13,6 @@
                 <li>Product name: {{ name }}
                     Product price: {{ price}}
                 </li>
-
-
-
             {% empty %}
             No products yet...
             {% endfor %}
@@ -33,8 +30,12 @@
     <div>
         Time running: {{ time_running }}
     </div>
+{% cache 100 lorem products %}
+<!-- Обязательно указывает период кеширования и название ключа (отдельный ключ, он не связан с тегом lorem)-->
+<!-- переменная lorem products указывает, что для этого блока products будет один кэш, а для другого блока с другим products - другой-->
     <div>
         {% lorem 3 p random %}
     </div>
+{% endcache %}
 
 {% endblock %}

@@ -1,3 +1,3 @@
 name,description,price,discount,created_by
-"Laptop 14","A new one","2299.00",5,1
-"Laptop 16","A new bigger one","2699.00",7,1
+"Laptop 14","A new one","2299.00",5,"wishka"
+"Laptop 16","A new bigger one","2699.00",7,"Nick"

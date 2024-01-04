@@ -6348,3 +6348,642 @@ Traceback (most recent call last):
   File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-03 06:06:33,872 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py changed, reloading.
+2024-01-03 06:06:34,443 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 06:07:27,488 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 06:13:28,990 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py changed, reloading.
+2024-01-03 06:13:29,652 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 06:24:32,083 ERROR django.request: Internal Server Error: /admin/shopapp/product/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 38, in sentry_patched_render
+    return old_render(self)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/templates.py", line 75, in rendered_content
+    return real_rendered_content.fget(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'import_products_csv' not found. 'import_products_csv' is not a valid view function or pattern name.
+2024-01-03 06:25:02,770 ERROR django.request: Internal Server Error: /admin/shopapp/product/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 38, in sentry_patched_render
+    return old_render(self)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/templates.py", line 75, in rendered_content
+    return real_rendered_content.fget(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/test/utils.py", line 112, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'import_products_csv' not found. 'import_products_csv' is not a valid view function or pattern name.
+2024-01-03 06:27:50,702 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py changed, reloading.
+2024-01-03 06:27:51,344 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 06:29:11,532 ERROR django.request: Internal Server Error: /ru/shop/products/latest/feed/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 40, in __call__
+    feedgen = self.get_feed(obj, request)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 143, in get_feed
+    link = add_domain(current_site.domain, link, request.is_secure())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 17, in add_domain
+    if url.startswith("//"):
+       ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/utils/functional.py", line 149, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'products' not found. 'products' is not a valid view function or pattern name.
+2024-01-03 06:34:31,467 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 06:34:41,710 ERROR django.request: Internal Server Error: /rss/news/latest/feed/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 40, in __call__
+    feedgen = self.get_feed(obj, request)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 194, in get_feed
+    self._get_dynamic_attr("item_link", item),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 103, in _get_dynamic_attr
+    return attr(obj)
+           ^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 60, in item_link
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/rss_news/models.py", line 12, in get_absolute_url
+    return reverse("rss_news:news", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-03 14:33:05,405 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:33:11,573 ERROR django.request: Internal Server Error: /rss/news/latest/feed/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 40, in __call__
+    feedgen = self.get_feed(obj, request)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 194, in get_feed
+    self._get_dynamic_attr("item_link", item),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 103, in _get_dynamic_attr
+    return attr(obj)
+           ^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/syndication/views.py", line 60, in item_link
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/rss_news/models.py", line 12, in get_absolute_url
+    return reverse("rss_news:news", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'news' with keyword arguments '{'pk': 1}' not found. 1 pattern(s) tried: ['rss/news/\\Z']
+2024-01-03 14:33:11,673 WARNING django.request: Not Found: /favicon.ico
+2024-01-03 14:34:32,154 ERROR django.request: Internal Server Error: /admin/shopapp/product/import-products-csv/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py", line 99, in import_csv
+    created_at=row["created_at"],
+               ~~~^^^^^^^^^^^^^^
+KeyError: 'created_at'
+2024-01-03 14:35:57,614 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py changed, reloading.
+2024-01-03 14:35:58,191 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:36:09,377 ERROR django.request: Internal Server Error: /admin/shopapp/product/import-products-csv/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py", line 94, in import_csv
+    product = Product.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'1'": "Product.created_by" must be a "User" instance.
+2024-01-03 14:36:59,913 ERROR django.request: Internal Server Error: /admin/shopapp/product/import-products-csv/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/admin.py", line 94, in import_csv
+    product = Product.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'wishka'": "Product.created_by" must be a "User" instance.
+2024-01-03 14:40:09,110 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2024-01-03 14:40:09,726 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:41:29,821 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/urls.py changed, reloading.
+2024-01-03 14:41:30,191 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:41:49,315 WARNING django.request: Not Found: /myauth/session/get
+2024-01-03 14:41:55,312 WARNING django.request: Not Found: /myauth/cookie/get/
+2024-01-03 14:43:13,418 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:43:14,031 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:43:25,609 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:43:25,965 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:44:35,589 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:44:35,940 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:44:45,460 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:44:45,817 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:45:44,202 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:45:45,042 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:45:54,489 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:45:54,874 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:46:10,532 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:46:10,876 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:46:46,299 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:46:46,716 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:47:09,646 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:47:10,013 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:48:35,614 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/views.py changed, reloading.
+2024-01-03 14:48:36,248 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:49:15,716 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-03 14:49:16,129 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:49:56,872 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/urls.py changed, reloading.
+2024-01-03 14:49:57,273 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:50:17,085 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/urls.py changed, reloading.
+2024-01-03 14:50:17,449 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:51:26,086 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/myauth/urls.py changed, reloading.
+2024-01-03 14:51:26,580 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:52:10,046 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/urls.py changed, reloading.
+2024-01-03 14:52:10,491 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:53:15,073 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/urls.py changed, reloading.
+2024-01-03 14:53:15,481 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:53:57,306 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/urls.py changed, reloading.
+2024-01-03 14:53:57,964 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:54:45,118 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/urls.py changed, reloading.
+2024-01-03 14:54:45,502 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 14:54:57,739 INFO shopapp.views: Rendering shop index
+2024-01-03 15:02:15,918 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:02:16,567 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:02:28,084 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:02:28,460 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:02:43,123 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:02:43,469 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:02:52,929 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:02:53,316 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:03:11,158 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:03:11,527 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:03:29,267 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:03:29,641 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:04:11,404 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:04:11,805 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:05:35,631 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:05:36,277 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:06:03,449 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:06:03,824 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:06:18,499 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:06:18,913 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:07:12,021 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:07:12,445 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:08:37,283 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:08:38,125 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-03 15:09:27,144 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-03 15:09:27,558 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 05:56:05,569 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 05:56:13,321 INFO shopapp.views: Rendering shop index
+2024-01-04 05:56:13,609 WARNING django.request: Not Found: /favicon.ico
+2024-01-04 06:01:35,523 ERROR django.request: Internal Server Error: /ru/accounts/about-me/update/
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/myauth/views.py", line 131, in update_profile
+    profile = request.user.profile
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 492, in __get__
+    raise self.RelatedObjectDoesNotExist(
+django.contrib.auth.models.User.profile.RelatedObjectDoesNotExist: User has no profile.
+2024-01-04 06:14:03,083 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:14:03,662 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:14:13,089 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:14:13,426 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:14:40,581 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:14:40,969 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:14:53,530 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:14:54,018 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:15:21,225 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:15:21,683 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:15:31,151 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:15:31,517 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:15:45,169 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:15:45,559 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:16:37,682 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:16:38,369 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:16:51,969 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:16:52,348 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:17:11,216 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:17:11,664 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:17:43,939 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:17:44,321 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:19:33,393 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/views.py changed, reloading.
+2024-01-04 06:19:34,126 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:22:52,167 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2024-01-04 06:22:52,795 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:23:23,985 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2024-01-04 06:23:24,338 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 06:24:35,922 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/my_site/settings.py changed, reloading.
+2024-01-04 06:24:36,336 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 14:37:58,725 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 14:38:42,136 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/rss_news/models.py changed, reloading.
+2024-01-04 14:38:42,489 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 14:39:08,210 WARNING django.request: Not Found: /news/latest/feed/
+2024-01-04 14:39:08,333 WARNING django.request: Not Found: /favicon.ico
+2024-01-04 14:40:28,766 ERROR django.request: Internal Server Error: /sitemap.xml
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 34, in inner
+    response = func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 128, in sitemap
+    urls.extend(site.get_urls(page=page, site=req_site, protocol=req_protocol))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 167, in get_urls
+    return self._urls(page, protocol, domain)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 187, in _urls
+    loc = f"{protocol}://{domain}{self._location(item)}"
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 122, in _location
+    return self._get("location", item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 92, in _get
+    return attr(item)
+           ^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 132, in location
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/models.py", line 35, in get_absolute_url
+    return reverse("shopapp:products", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'products' not found. 'products' is not a valid view function or pattern name.
+2024-01-04 14:41:06,124 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/models.py changed, reloading.
+2024-01-04 14:41:06,943 INFO django.utils.autoreload: Watching for file changes with StatReloader
+2024-01-04 14:41:11,610 ERROR django.request: Internal Server Error: /sitemap.xml
+Traceback (most recent call last):
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 34, in inner
+    response = func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py", line 128, in sitemap
+    urls.extend(site.get_urls(page=page, site=req_site, protocol=req_protocol))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 167, in get_urls
+    return self._urls(page, protocol, domain)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 187, in _urls
+    loc = f"{protocol}://{domain}{self._location(item)}"
+                                  ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 122, in _location
+    return self._get("location", item)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 92, in _get
+    return attr(item)
+           ^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/contrib/sitemaps/__init__.py", line 132, in location
+    return item.get_absolute_url()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/my_site/shopapp/models.py", line 72, in get_absolute_url
+    return reverse("shopapp:orders", kwargs={"pk": self.pk})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/wishka/python projects/first_django_project/venv/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'orders' not found. 'orders' is not a valid view function or pattern name.
+2024-01-04 14:41:29,743 INFO django.utils.autoreload: /Users/wishka/python projects/first_django_project/my_site/shopapp/models.py changed, reloading.
+2024-01-04 14:41:30,281 INFO django.utils.autoreload: Watching for file changes with StatReloader

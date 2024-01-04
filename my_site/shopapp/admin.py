@@ -44,7 +44,7 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
     ]
     list_display = ("pk", "name", "description_short", "price", "discount", "archived")
     list_display_links = ("pk", "name")
-    ordering = "pk", # Позволяет сортировать по первичному ключу. , в конце обязательна так как
+    ordering = "pk",  # Позволяет сортировать по первичному ключу. , в конце обязательна так как
     # сортировка требует кортеж. Если требуется сортировка по имени и цене то , не нужна
     search_fields = "name", "description"
     fieldsets = [
@@ -96,15 +96,24 @@ class ProductAdmin(admin.ModelAdmin, ExportAsCSVMixin):
                 description=row["description"],
                 price=row["price"],
                 discount=row["discount"],
-                created_at=row["created_at"],
                 created_by=row["created_by"],
             )
             products_ids = row["products_ids"].split(",")
             product.set(products_ids)
-            
+        
         self.message_user(request, "Data from CSV was imported!")
         return redirect("..")
-    
+
+    def get_urls(self):
+        urls = super().get_urls()
+        new_urls = [
+            path(
+                "import-products-csv/",
+                self.import_csv,
+                name="import_products_csv",
+            )
+        ]
+        return new_urls + urls
 
 
 
@@ -118,6 +127,7 @@ class OrderAdmin(admin.ModelAdmin):
         ProductInline,
     ]
     list_display = "delivery_address", "promocode", "created_at", "user_verbose_name"
+    change_list_template = "shopapp/orders_changelist.html"
     
     def get_queryset(self, request):
         return Order.objects.select_related("user").prefetch_related("products")

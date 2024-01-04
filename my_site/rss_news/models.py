@@ -9,4 +9,4 @@ class News(models.Model):
 
     # Данный метод позволит объекту News иметь возможность сгенерировать ссылку на статью
     def get_absolute_url(self):
-        return reverse("rss_news:news", kwargs={"pk": self.pk})
+        return reverse("rss_news:news_detail", kwargs={"pk": self.pk})

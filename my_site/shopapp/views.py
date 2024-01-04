@@ -3,8 +3,9 @@
 """
 from csv import DictWriter
 import logging
+from random import random
 from timeit import default_timer
-
+from django.core.cache import cache
 from django.contrib.syndication.views import Feed
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -25,7 +26,9 @@ from .models import Product, Order, ProductImage
 from .serializers import ProductSerializer, OrderSerializer
 from .common import save_csv_products
 from drf_spectacular.utils import extend_schema, OpenApiResponse
-
+# Необходимо для кеширования REST view, подключенных через router
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 # Это стандартный формат создания нового логгера
 log = logging.getLogger(__name__)
@@ -95,7 +98,12 @@ class ProductViewSet(ModelViewSet):
         )
         serializer = self.get_serializer(products, many=True)
         return Response(serializer.data)
-
+    
+    @method_decorator(cache_page(60 * 2)) # Можно добавлять на любой метод класса
+    def list(self, *args, **kwargs):
+        return super().list(*args, **kwargs)
+    
+    
 class ShopIndexView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         products = [
@@ -281,19 +289,21 @@ class OrderDeleteView(DeleteView):
 
 class ProductsDataExportView(View):
     def get(self, request: HttpRequest) -> JsonResponse:
-        products = Product.objects.order_by("pk").all()
-        products_data = [
-            {
-                "pk": product.pk,
-                "name": product.name,
-                "price": product.price,
-                "archived": product.archived,
-            }
-            for product in products
-        ]
-        elem = products_data[0]
-        name = elem["name"]
-        print("name:", name)
+        # Добавим Low level cache api, чтобы кэшировать экспорт товаров и запросы к БД
+        cache_key = "products_data_export"
+        products_data = cache.get(cache_key)
+        if products_data is None:
+            products = Product.objects.order_by("pk").all()
+            products_data = [
+                {
+                    "pk": product.pk,
+                    "name": product.name,
+                    "price": product.price,
+                    "archived": product.archived,
+                }
+                for product in products
+            ]
+        cache.set(cache_key, products_data, 300)
         return JsonResponse({"products": products_data})
     
     
