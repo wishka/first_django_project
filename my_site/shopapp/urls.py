@@ -7,7 +7,8 @@ from .views import (ShopIndexView, GroupsListView,
                     ProductUpdateView, ProductDeleteView,
                     OrderUpdateView, OrderDeleteView,
                     ProductsDataExportView, OrdersDataExportView,
-                    ProductViewSet, OrdersViewSet, LatestProductFeed
+                    ProductViewSet, OrdersViewSet, LatestProductFeed,
+                    UserOrdersListView, UserOrdersDataExportView,
                     )
 from django.views.decorators.cache import cache_page
 
@@ -37,4 +38,7 @@ urlpatterns = [
     path('orders/<int:pk>/', OrderDetailView.as_view(), name='order_details'),
     path('orders/<int:pk>/update', OrderUpdateView.as_view(), name='order_update'),
     path('orders/<int:pk>/delete', OrderDeleteView.as_view(), name='order_delete'),
+    path("users/<int:user_id>/orders/", UserOrdersListView.as_view(), name='user_orders'),
+    path('users/<int:user_id>/orders/export/', UserOrdersDataExportView.as_view(), name='user-orders-export'),
+    
 ]

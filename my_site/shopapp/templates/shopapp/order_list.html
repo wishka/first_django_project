@@ -1,5 +1,5 @@
 {% extends 'shopapp/base.html' %}
-
+{% load cache %}
 {% block title %}
     Orders list
 {% endblock %}
@@ -7,6 +7,7 @@
 {% block body %}
     <h1> Orders </h1>
         {% if object_list %}
+        {% cache 60 owner.pk %}
     <div>{% for order in object_list %}</div>
         <div>
             <p><a href="{% url 'shopapp:order_details' pk=order.pk %}">Details of order {{ order.pk}}</a></p>
@@ -22,6 +23,7 @@
             </div>
         </div>
         {% endfor %}
+        {% endcache %}
         {% else %}
     <h3>No orders yet...</h3>
         {% endif %}

@@ -13,3 +13,9 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ('pk', "delivery_address", "promocode", "created_at", "user", "products", )
+        
+
+class UserOrdersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('pk', "delivery_address", "promocode", "created_at", "products", )

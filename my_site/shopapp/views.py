@@ -7,6 +7,7 @@ from random import random
 from timeit import default_timer
 from django.core.cache import cache
 from django.contrib.syndication.views import Feed
+from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -14,16 +15,16 @@ from rest_framework.decorators import action
 from rest_framework.request import Request
 from rest_framework.parsers import MultiPartParser
 from django_filters.rest_framework import DjangoFilterBackend
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import GroupForm, ProductForm
 from .models import Product, Order, ProductImage
-from .serializers import ProductSerializer, OrderSerializer
+from .serializers import ProductSerializer, OrderSerializer, UserOrdersSerializer
 from .common import save_csv_products
 from drf_spectacular.utils import extend_schema, OpenApiResponse
 # Необходимо для кеширования REST view, подключенных через router
@@ -234,6 +235,23 @@ class OrdersViewSet(ModelViewSet):
     ]
     filterset_fields = ["delivery_address", "promocode", "created_at", "user", "products"]
     ordering_fields = ["user", "created_at"]
+
+
+class UserOrdersListView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'user_orders.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        user = get_object_or_404(User, id=user_id)
+        self.owner = user
+        return super().get_queryset().filter(user=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['owner'] = self.owner
+        return context
     
     
 class OrdersListView(LoginRequiredMixin, ListView):
@@ -320,6 +338,47 @@ class OrdersDataExportView(View):
             for order in orders
         ]
         return JsonResponse({"orders": orders_data})
+
+
+class UserOrdersDataExportView(View):
+    def get(self, request, user_id):
+        cache_key = f"user_orders_export:{user_id}"
+        cached_data = cache.get(cache_key)
+
+        if cached_data:
+            return JsonResponse(cached_data)
+
+        user = get_object_or_404(User, id=user_id)
+        orders = Order.objects.filter(user=user).order_by("pk")
+
+        orders_data = serialize("json", orders, fields=("pk", "delivery_address", "promocode"))
+        response = JsonResponse({"orders": orders_data}, safe=False)
+
+        cache.set(cache_key, orders_data, 60 * 5)  # Cache the response for 5 minutes
+
+        return response
+
+
+def get_user_orders(user_id):
+    cache_key = f'user_orders:{user_id}'
+    cached_data = cache.get(cache_key)
+
+    if cached_data:
+        # Если данные найдены в кеше, возвращаем их
+        return cached_data
+
+    # Если данные не найдены в кеше, загружаем их
+    # ваш код для загрузки данных пользователя и его заказов
+
+    # Пример кода для загрузки данных пользователя и его заказов:
+    user = User.objects.get(id=user_id)
+    orders = Order.objects.filter(user=user)
+
+    # Сохраняем данные в кеше
+    cache.set(cache_key, {'user': user, 'orders': orders})
+
+    # Возвращаем данные
+    return {'user': user, 'orders': orders}
 
 
 class LatestProductFeed(Feed):
