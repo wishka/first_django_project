@@ -15,13 +15,6 @@ from os import getenv
 import logging.config
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
-import sentry_sdk
-
-sentry_sdk.init(
-    dsn="https://18ea8a338761df6f483d65da425f9aeb@o4506473402990592.ingest.sentry.io/4506473418391552",
-    traces_sample_rate=1.0,
-    profiles_sample_rate=1.0,
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
